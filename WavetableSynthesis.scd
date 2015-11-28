@@ -1,7 +1,8 @@
 (
 s.waitForBoot{
 	fork{
-		~wsb = SoundFile.collectIntoBuffers("/Users/jyang/GitHub/wavetablesynthesis/wavetables/*",s,); //load wavetables into buffers
+		//load wavetables into buffers
+		~wsb = SoundFile.collectIntoBuffers("/Users/jyang/GitHub/wavetablesynthesis/wavetables/*",s,);
 		SynthDef(\waveshape_test, {
 			arg pitch=60, buf, numbuf=32;
 			var sig, freq, offset;
@@ -30,13 +31,13 @@ s.waitForBoot{
 )
 a = Synth(\waveshape_test, [\buf, ~wsb[0].bufnum, \numbuf, ~wsb.size]);
 a.free;
-~wsb[75];
-~wsb[40];
-b = Buffer.read(s, "/Users/jyang/GitHub/synthesisrecipies/WavetableSynthesis/ArchitectureWaveforms/WT23.aif");
-c = Buffer.read(s, "/Users/jyang/GitHub/synthesisrecipies/WavetableSynthesis/ArchitectureWaveforms/Pulse Bi Square 1-4th.wav");
+~wsb[88];
+~wsb[61];
+b = Buffer.read(s, "/Users/jyang/GitHub/wavetablesynthesis/wavetables/WT7.aif");
+c = Buffer.read(s, "/Users/jyang/GitHub/wavetablesynthesis/wavetables/WT10.aif");
 d = Synth(\wavtab_test, [\ibuf, b.bufnum]);
 d.free;
-e = Synth(\wavtab, [\ibuf, b.bufnum, \offset, 0.43]);
+e = Synth(\wavtab, [\ibuf, b.bufnum, \offset, 0.65]);
 e.set(\pitch, 42);
 e.set(\pitch, 77);
 e.free;
